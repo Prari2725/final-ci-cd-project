@@ -18,12 +18,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install flake8 pytest
+          pip install flake8 pytest autopep8
 
-      # 🔹 Linting Step (Task 2)
+      - name: Auto-fix formatting
+        run: autopep8 --in-place --aggressive --aggressive app.py test_app.py
+
       - name: Run Linting
         run: flake8 .
 
-      # 🔹 Testing Step (Task 3)
       - name: Run Tests
         run: pytest
