@@ -1,0 +1,29 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install flake8 pytest
+
+      # 🔹 Linting Step (Task 2)
+      - name: Run Linting
+        run: flake8 .
+
+      # 🔹 Testing Step (Task 3)
+      - name: Run Tests
+        run: pytest
